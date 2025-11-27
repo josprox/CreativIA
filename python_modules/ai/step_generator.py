@@ -64,9 +64,9 @@ class StepGenerator:
         image_base64 = base64.b64encode(buffer).decode('utf-8')
         
         return {
-            'title': 'Step 1: Basic Outline',
-            'description': 'Start with the main shapes and overall composition',
-            'instructions': 'Draw the largest shapes first to establish proportions',
+            'title': 'Paso 1: Contorno Básico',
+            'description': 'Comienza con las formas principales y la composición general',
+            'instructions': 'Dibuja primero las formas más grandes para establecer las proporciones',
             'image_base64': image_base64
         }
     
@@ -76,13 +76,26 @@ class StepGenerator:
         
         # Group shapes by size
         total_shapes = len(shapes)
-        shapes_per_step = max(3, total_shapes // 4)
         
-        for i in range(1, min(5, total_shapes // shapes_per_step)):
+        # More granular steps: aim for ~8-12 steps depending on complexity
+        # Ensure at least 3 shapes are added per step
+        shapes_per_step = max(3, int(total_shapes * 0.12))
+        
+        # Start after the first 3 shapes (used in step 1)
+        current_idx = 3
+        step_number = 2
+        
+        while current_idx < total_shapes:
             canvas = np.ones((height, width, 3), dtype=np.uint8) * 255
             
-            # Draw shapes up to this step
-            end_idx = min((i + 1) * shapes_per_step, total_shapes)
+            # Calculate end index for this step
+            end_idx = min(current_idx + shapes_per_step, total_shapes)
+            
+            # If remaining shapes are few, just include them all
+            if total_shapes - end_idx < 3:
+                end_idx = total_shapes
+            
+            # Draw shapes up to this point
             for shape in shapes[:end_idx]:
                 contour = shape['contour']
                 cv2.drawContours(canvas, [contour], -1, (0, 0, 0), 2)
@@ -91,11 +104,18 @@ class StepGenerator:
             image_base64 = base64.b64encode(buffer).decode('utf-8')
             
             steps.append({
-                'title': f'Step {i + 1}: Add Details',
-                'description': f'Add more shapes and refine the drawing',
-                'instructions': 'Focus on proportions and relationships between shapes',
+                'title': f'Paso {step_number}: Agregar Detalles',
+                'description': f'Añade más formas y refina el dibujo',
+                'instructions': 'Concéntrate en las proporciones y las relaciones entre las formas',
                 'image_base64': image_base64
             })
+            
+            current_idx = end_idx
+            step_number += 1
+            
+            # Safety break to prevent infinite loops if logic fails
+            if step_number > 20:
+                break
         
         return steps
     
@@ -114,8 +134,8 @@ class StepGenerator:
         image_base64 = base64.b64encode(buffer).decode('utf-8')
         
         return {
-            'title': 'Final Step: Shading and Details',
-            'description': 'Add shading, texture, and final details',
-            'instructions': 'Observe light and shadow to add depth to your drawing',
+            'title': 'Paso Final: Sombreado y Detalles',
+            'description': 'Añade sombreado, textura y detalles finales',
+            'instructions': 'Observa la luz y la sombra para dar profundidad a tu dibujo',
             'image_base64': image_base64
         }

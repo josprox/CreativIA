@@ -2,16 +2,17 @@
     <div class="container">
         <div class="hero-content">
             <h1 class="hero-title">
-                Transform Any Image Into a
-                <span class="gradient-text">Step-by-Step Drawing Tutorial</span>
+                Transforma Cualquier Imagen en un
+                <span class="gradient-text">Tutorial de Dibujo Paso a Paso</span>
             </h1>
             <p class="hero-subtitle">
-                Powered by AI and computer vision, CreativIA analyzes your images and generates
-                personalized drawing tutorials that break down complex artwork into simple, learnable steps.
+                Impulsado por IA y visión por computadora, CreativIA analiza tus imágenes y genera
+                tutoriales de dibujo personalizados que descomponen obras complejas en pasos simples y fáciles de
+                aprender.
             </p>
             <div class="hero-actions">
-                <a href="/register" class="btn btn-primary btn-large">Start Creating</a>
-                <a href="#features" class="btn btn-secondary btn-large">Learn More</a>
+                <a href="/register" class="btn btn-primary btn-large">Comenzar a Crear</a>
+                <a href="#features" class="btn btn-secondary btn-large">Saber Más</a>
             </div>
         </div>
         <div class="hero-visual">
@@ -19,8 +20,8 @@
                 <div class="card-glow"></div>
                 <div class="card-content">
                     <span class="visual-icon">✨</span>
-                    <h3>AI-Powered Analysis</h3>
-                    <p>Advanced computer vision breaks down images into drawable components</p>
+                    <h3>Análisis Potenciado por IA</h3>
+                    <p>La visión por computadora avanzada descompone las imágenes en componentes dibujables</p>
                 </div>
             </div>
         </div>
@@ -29,37 +30,37 @@
 
 <section id="features" class="features-section">
     <div class="container">
-        <h2 class="section-title">Why Choose CreativIA?</h2>
+        <h2 class="section-title">¿Por Qué Elegir CreativIA?</h2>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🎯</div>
-                <h3>Personalized Tutorials</h3>
-                <p>Generate custom tutorials from any image you want to learn to draw</p>
+                <h3>Tutoriales Personalizados</h3>
+                <p>Genera tutoriales personalizados de cualquier imagen que quieras aprender a dibujar</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📊</div>
-                <h3>Progressive Learning</h3>
-                <p>Step-by-step breakdown from basic shapes to final details</p>
+                <h3>Aprendizaje Progresivo</h3>
+                <p>Desglose paso a paso desde formas básicas hasta detalles finales</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🤖</div>
-                <h3>AI-Powered</h3>
-                <p>Advanced algorithms analyze and simplify complex images</p>
+                <h3>Potenciado por IA</h3>
+                <p>Algoritmos avanzados analizan y simplifican imágenes complejas</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💾</div>
-                <h3>Save Progress</h3>
-                <p>Track your learning journey and resume anytime</p>
+                <h3>Guarda tu Progreso</h3>
+                <p>Sigue tu viaje de aprendizaje y reanuda en cualquier momento</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🌐</div>
-                <h3>Share Tutorials</h3>
-                <p>Make your tutorials public and help others learn</p>
+                <h3>Comparte Tutoriales</h3>
+                <p>Haz públicos tus tutoriales y ayuda a otros a aprender</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🎨</div>
-                <h3>For Everyone</h3>
-                <p>Perfect for students, artists, and educators</p>
+                <h3>Para Todos</h3>
+                <p>Perfecto para estudiantes, artistas y educadores</p>
             </div>
         </div>
     </div>
@@ -68,9 +69,9 @@
 <section class="cta-section">
     <div class="container">
         <div class="cta-content">
-            <h2>Ready to Start Your Drawing Journey?</h2>
-            <p>Join thousands of artists learning to draw with AI-powered tutorials</p>
-            <a href="/register" class="btn btn-primary btn-large">Get Started Free</a>
+            <h2>¿Listo para Comenzar tu Viaje de Dibujo?</h2>
+            <p>Únete a miles de artistas aprendiendo a dibujar con tutoriales potenciados por IA</p>
+            <a href="/register" class="btn btn-primary btn-large">Empieza Gratis</a>
         </div>
     </div>
 </section>

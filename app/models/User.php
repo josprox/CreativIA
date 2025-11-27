@@ -77,7 +77,7 @@ class User extends Model
      */
     public function emailExists($email)
     {
-        return $this->findByEmail($email) !== null;
+        return $this->findByEmail($email) !== false;
     }
 
     /**
@@ -88,7 +88,7 @@ class User extends Model
      */
     public function usernameExists($username)
     {
-        return $this->findByUsername($username) !== null;
+        return $this->findByUsername($username) !== false;
     }
 
     /**

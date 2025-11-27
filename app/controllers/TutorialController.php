@@ -127,4 +127,21 @@ class TutorialController extends Controller
             'tutorials' => $tutorials
         ]);
     }
+    /**
+     * Delete tutorial
+     */
+    public function delete($id)
+    {
+        $this->requireAuth();
+        $userId = $this->getUserId();
+
+        if ($this->tutorialService->deleteTutorial($id, $userId)) {
+            // Redirect back to where they came from or dashboard
+            $referer = $_SERVER['HTTP_REFERER'] ?? '/dashboard';
+            $this->redirect($referer);
+        } else {
+            // Handle error (could be flash message, but for now just redirect)
+            $this->redirect('/dashboard');
+        }
+    }
 }

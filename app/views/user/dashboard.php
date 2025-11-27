@@ -10,7 +10,7 @@ function cleanDashboardPath($path)
     if ($pos !== false)
         return '/' . str_replace('\\', '/', substr($path, $pos));
 
-    // 2. Busca si es la imagen original (uploads) <-- ESTO FALTABA
+    // 2. Busca si es la imagen original (uploads)
     $pos = strpos($path, 'uploads');
     if ($pos !== false)
         return '/' . str_replace('\\', '/', substr($path, $pos));
@@ -21,27 +21,27 @@ function cleanDashboardPath($path)
 
 <div class="dashboard-container">
     <div class="dashboard-header">
-        <h1>Welcome back, <?= htmlspecialchars($user['username']) ?>!</h1>
-        <p>Continue your drawing journey</p>
+        <h1>¡Bienvenido de nuevo, <?= htmlspecialchars($user['username']) ?>!</h1>
+        <p>Continúa tu viaje de dibujo</p>
     </div>
 
     <div class="dashboard-actions">
         <a href="/upload" class="btn btn-primary">
-            <span>📤</span> Upload New Image
+            <span>📤</span> Subir Nueva Imagen
         </a>
         <a href="/tutorials" class="btn btn-secondary">
-            <span>📚</span> View All Tutorials
+            <span>📚</span> Ver Todos los Tutoriales
         </a>
     </div>
 
     <div class="dashboard-section">
-        <h2>Recent Tutorials</h2>
+        <h2>Tutoriales Recientes</h2>
 
         <?php if (empty($tutorials)): ?>
             <div class="empty-state">
                 <span class="empty-icon">🎨</span>
-                <p>You haven't created any tutorials yet</p>
-                <a href="/upload" class="btn btn-primary">Create Your First Tutorial</a>
+                <p>Aún no has creado ningún tutorial</p>
+                <a href="/upload" class="btn btn-primary">Crea Tu Primer Tutorial</a>
             </div>
         <?php else: ?>
             <div class="tutorials-grid">
@@ -61,7 +61,7 @@ function cleanDashboardPath($path)
                             <?php else: ?>
                                 <div
                                     style="display: flex; justify-content: center; align-items: center; height: 100%; color: var(--text-secondary);">
-                                    <span>No Image</span>
+                                    <span>Sin Imagen</span>
                                 </div>
                             <?php endif; ?>
 
@@ -87,15 +87,21 @@ function cleanDashboardPath($path)
 
                             <div class="tutorial-card-meta"
                                 style="margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.8rem;">
-                                <span>📊 <?= $tutorial['total_steps'] ?> steps</span>
-                                <span><?= $tutorial['is_public'] ? '🌐 Public' : '🔒 Private' ?></span>
+                                <span>📊 <?= $tutorial['total_steps'] ?> pasos</span>
+                                <span><?= $tutorial['is_public'] ? '🌐 Público' : '🔒 Privado' ?></span>
                             </div>
 
-                            <div style="margin-top: 1rem;">
-                                <a href="/tutorial/<?= $tutorial['id'] ?>" class="btn btn-secondary"
-                                    style="width: 100%; text-align: center; display: block;">
-                                    View Tutorial
+                            <div class="tutorial-card-actions">
+                                <a href="/tutorial/<?= $tutorial['id'] ?>" class="btn btn-secondary">
+                                    Ver
                                 </a>
+                                <form action="/tutorial/delete/<?= $tutorial['id'] ?>" method="POST"
+                                    onsubmit="return confirm('¿Estás seguro de que quieres eliminar este tutorial? Esta acción no se puede deshacer.');"
+                                    style="display: inline;">
+                                    <button type="submit" class="btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

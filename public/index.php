@@ -46,6 +46,7 @@ $router->get('/upload', 'TutorialController@showUpload');
 $router->post('/upload', 'TutorialController@upload');
 $router->get('/tutorial/{id}', 'TutorialController@show');
 $router->get('/tutorials', 'TutorialController@list');
+$router->post('/tutorial/delete/{id}', 'TutorialController@delete');
 
 // User routes
 $router->get('/dashboard', 'UserController@dashboard');

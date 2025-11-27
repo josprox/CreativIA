@@ -76,7 +76,18 @@ class Tutorial extends Model
      */
     public function getByUser($userId, $limit = null)
     {
-        return $this->findAll(['user_id' => $userId], 'created_at DESC', $limit);
+        $sql = "SELECT t.*, i.original_path as image_path 
+                FROM {$this->table} t 
+                LEFT JOIN images i ON t.image_id = i.id 
+                WHERE t.user_id = ? 
+                ORDER BY t.created_at DESC";
+
+        if ($limit) {
+            $sql .= " LIMIT " . (int) $limit;
+        }
+
+        $stmt = $this->query($sql, [$userId]);
+        return $stmt->fetchAll();
     }
 
     /**
@@ -87,7 +98,18 @@ class Tutorial extends Model
      */
     public function getPublic($limit = null)
     {
-        return $this->findAll(['is_public' => 1], 'created_at DESC', $limit);
+        $sql = "SELECT t.*, i.original_path as image_path 
+                FROM {$this->table} t 
+                LEFT JOIN images i ON t.image_id = i.id 
+                WHERE t.is_public = 1 
+                ORDER BY t.created_at DESC";
+
+        if ($limit) {
+            $sql .= " LIMIT " . (int) $limit;
+        }
+
+        $stmt = $this->query($sql);
+        return $stmt->fetchAll();
     }
 
     /**
@@ -137,10 +159,12 @@ class Tutorial extends Model
      */
     public function search($query, $limit = 20)
     {
-        $sql = "SELECT * FROM {$this->table} 
-                WHERE (title LIKE ? OR description LIKE ?) 
-                AND is_public = 1 
-                ORDER BY created_at DESC 
+        $sql = "SELECT t.*, i.original_path as image_path 
+                FROM {$this->table} t 
+                LEFT JOIN images i ON t.image_id = i.id 
+                WHERE (t.title LIKE ? OR t.description LIKE ?) 
+                AND t.is_public = 1 
+                ORDER BY t.created_at DESC 
                 LIMIT ?";
 
         $searchTerm = "%{$query}%";

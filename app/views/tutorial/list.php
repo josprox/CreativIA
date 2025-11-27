@@ -58,7 +58,7 @@ function cleanListPath($path)
                         <?php else: ?>
                             <div
                                 style="display: flex; justify-content: center; align-items: center; height: 100%; color: var(--text-secondary);">
-                                <span>No Image</span>
+                                <span>Sin Imagen</span>
                             </div>
                         <?php endif; ?>
 
@@ -80,14 +80,20 @@ function cleanListPath($path)
                         <div class="tutorial-card-meta"
                             style="margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.8rem;">
                             <span>📊 <?= $tutorial['steps_count'] ?? $tutorial['total_steps'] ?? '?' ?> pasos</span>
-                            <span><?= ($tutorial['is_public'] ?? 0) ? '🌐 Public' : '🔒 Private' ?></span>
+                            <span><?= ($tutorial['is_public'] ?? 0) ? '🌐 Público' : '🔒 Privado' ?></span>
                         </div>
 
-                        <div style="margin-top: 1rem;">
-                            <a href="/tutorial/<?= $tutorial['id'] ?>" class="btn btn-secondary"
-                                style="display: block; text-align: center;">
-                                Ver Tutorial
+                        <div class="tutorial-card-actions">
+                            <a href="/tutorial/<?= $tutorial['id'] ?>" class="btn btn-secondary">
+                                Ver
                             </a>
+                            <form action="/tutorial/delete/<?= $tutorial['id'] ?>" method="POST"
+                                onsubmit="return confirm('¿Estás seguro de que quieres eliminar este tutorial? Esta acción no se puede deshacer.');"
+                                style="display: inline;">
+                                <button type="submit" class="btn btn-danger">
+                                    Eliminar
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
