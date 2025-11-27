@@ -97,8 +97,7 @@ class Step extends Model
 
     /**
      * Delete step and associated files
-     * 
-     * @param int $stepId Step ID
+     * * @param int $stepId Step ID
      * @return bool Success status
      */
     public function deleteStep($stepId)
@@ -106,9 +105,16 @@ class Step extends Model
         $step = $this->find($stepId);
 
         if ($step) {
-            // Delete image file
-            if (file_exists($step['image_path'])) {
-                unlink($step['image_path']);
+            // 1. Definimos la ruta base física de tu servidor donde está la carpeta 'public'
+            // Dinámica (Si mueves el proyecto, esto se adapta solo)
+            $basePath = dirname(__DIR__, 2) . '/public';
+
+            // 2. Construimos la ruta completa
+            $fullPath = $basePath . $step['image_path'];
+
+            // 3. Verificamos y borramos usando la ruta completa
+            if (file_exists($fullPath)) {
+                unlink($fullPath);
             }
 
             return $this->delete($stepId);
