@@ -1,0 +1,21 @@
+{
+  "name": "ai-drawing-tutorial-generator",
+  "version": "1.0.0",
+  "description": "AI Drawing Tutorial Generator with layered image processing",
+  "main": "app.js",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -c-1"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": [
+    "image-processing",
+    "opencv",
+    "drawing-tutorial",
+    "edge-detection"
+  ],
+  "author": "",
+  "license": "MIT",
+  "note": "OpenCV.js is loaded via CDN in index.html. For npm installation, use: npm install opencv.js or load via CDN (recommended for browser)"
+}
+
