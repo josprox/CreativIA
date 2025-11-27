@@ -1,169 +1,169 @@
-# User Guide - CreativIA
+# Guía de Usuario - CreativIA
 
-## Getting Started
+## Comenzando
 
-Welcome to CreativIA! This guide will help you create your first AI-powered drawing tutorial.
+¡Bienvenido a CreativIA! Esta guía te ayudará a crear tu primer tutorial de dibujo impulsado por IA.
 
-## Creating an Account
+## Creando una Cuenta
 
-1. Navigate to the homepage
-2. Click **"Get Started"** or **"Register"**
-3. Fill in your details:
-   - Username (3-50 characters)
-   - Email address
-   - Password (minimum 6 characters)
-4. Click **"Create Account"**
+1. Navega a la página de inicio
+2. Haz clic en **"Empezar"** o **"Registrarse"**
+3. Completa tus datos:
+   - Nombre de usuario (3-50 caracteres)
+   - Dirección de correo electrónico
+   - Contraseña (mínimo 6 caracteres)
+4. Haz clic en **"Crear Cuenta"**
 
-You'll be automatically logged in and redirected to your dashboard.
+Serás conectado automáticamente y redirigido a tu panel de control.
 
-## Uploading Your First Image
+## Subiendo tu Primera Imagen
 
-1. From your dashboard, click **"Upload New Image"**
-2. Choose an image:
-   - **Drag and drop** your image onto the upload zone, or
-   - **Click** the upload zone to browse files
-3. Supported formats: JPG, PNG, GIF (max 5MB)
-4. Add optional details:
-   - **Title**: Give your tutorial a name
-   - **Description**: Describe what you want to learn
-   - **Make public**: Check this to share with others
-5. Click **"Generate Tutorial"**
+1. Desde tu panel de control, haz clic en **"Subir Nueva Imagen"**
+2. Elige una imagen:
+   - **Arrastra y suelta** tu imagen en la zona de carga, o
+   - **Haz clic** en la zona de carga para buscar archivos
+3. Formatos soportados: JPG, PNG, GIF (máx 5MB)
+4. Agrega detalles opcionales:
+   - **Título**: Dale un nombre a tu tutorial
+   - **Descripción**: Describe lo que quieres aprender
+   - **Hacer público**: Marca esto para compartir con otros
+5. Haz clic en **"Generar Tutorial"**
 
-The AI will process your image and create step-by-step instructions!
+¡La IA procesará tu imagen y creará instrucciones paso a paso!
 
-## Viewing Your Tutorial
+## Viendo tu Tutorial
 
-Once processing is complete, you'll see:
+Una vez completado el procesamiento, verás:
 
-- **Tutorial header** with title and metadata
-- **Main viewing area** showing the current step
-- **Step controls** to navigate (Previous/Next)
-- **Thumbnail strip** for quick navigation
-- **Step information** with instructions
+- **Encabezado del tutorial** con título y metadatos
+- **Área de visualización principal** mostrando el paso actual
+- **Controles de paso** para navegar (Anterior/Siguiente)
+- **Tira de miniaturas** para navegación rápida
+- **Información del paso** con instrucciones
 
-### Navigation Tips
+### Consejos de Navegación
 
-- Use **arrow keys** (← →) for keyboard navigation
-- Click **thumbnails** to jump to specific steps
-- Follow the **instructions** for each step
-- Take your time with each step before moving on
+- Usa las **teclas de flecha** (← →) para navegación con teclado
+- Haz clic en **miniaturas** para saltar a pasos específicos
+- Sigue las **instrucciones** para cada paso
+- Tómate tu tiempo con cada paso antes de continuar
 
-## Understanding Tutorial Steps
+## Entendiendo los Pasos del Tutorial
 
-Each tutorial typically includes:
+Cada tutorial típicamente incluye:
 
-1. **Basic Outline** - Main shapes and composition
-2. **Detail Steps** - Progressive refinement
-3. **Final Step** - Shading and finishing touches
+1. **Esquema Básico** - Formas principales y composición
+2. **Pasos de Detalle** - Refinamiento progresivo
+3. **Paso Final** - Sombreado y toques finales
 
-The AI analyzes your image and breaks it down into learnable components.
+La IA analiza tu imagen y la desglosa en componentes aprendibles.
 
-## Managing Your Tutorials
+## Gestionando tus Tutoriales
 
-### Dashboard
+### Panel de Control
 
-Your dashboard shows:
-- Recent tutorials
-- Quick access to upload
-- Tutorial statistics
+Tu panel de control muestra:
+- Tutoriales recientes
+- Acceso rápido para subir
+- Estadísticas de tutoriales
 
-### Tutorial Actions
+### Acciones del Tutorial
 
-- **View**: Open the tutorial viewer
-- **Share**: Make tutorial public (if private)
-- **Delete**: Remove tutorial permanently
+- **Ver**: Abrir el visor del tutorial
+- **Compartir**: Hacer público el tutorial (si es privado)
+- **Eliminar**: Eliminar el tutorial permanentemente
 
-## Sharing Tutorials
+## Compartiendo Tutoriales
 
-To share a tutorial:
+Para compartir un tutorial:
 
-1. Open the tutorial
-2. Click **"Share"** button
-3. Copy the share link
-4. Send to friends or post on social media
+1. Abre el tutorial
+2. Haz clic en el botón **"Compartir"**
+3. Copia el enlace para compartir
+4. Envíalo a amigos o publícalo en redes sociales
 
-Public tutorials can be viewed by anyone, even without an account.
+Los tutoriales públicos pueden ser vistos por cualquiera, incluso sin una cuenta.
 
-## Tips for Best Results
+## Consejos para Mejores Resultados
 
-### Image Selection
+### Selección de Imagen
 
-✅ **Good images**:
-- Clear, well-lit photos
-- Simple to moderate complexity
-- Good contrast
-- Focused subject
+✅ **Buenas imágenes**:
+- Fotos claras y bien iluminadas
+- Complejidad simple a moderada
+- Buen contraste
+- Sujeto enfocado
 
-❌ **Avoid**:
-- Very blurry images
-- Extremely complex scenes
-- Low contrast images
-- Very small images
+❌ **Evitar**:
+- Imágenes muy borrosas
+- Escenas extremadamente complejas
+- Imágenes de bajo contraste
+- Imágenes muy pequeñas
 
-### Learning Approach
+### Enfoque de Aprendizaje
 
-1. **Start simple** - Begin with easier images
-2. **Practice regularly** - Consistency is key
-3. **Follow the steps** - Don't skip ahead
-4. **Be patient** - Learning takes time
-5. **Experiment** - Try different images
+1. **Empieza simple** - Comienza con imágenes más fáciles
+2. **Practica regularmente** - La consistencia es clave
+3. **Sigue los pasos** - No te saltes nada
+4. **Sé paciente** - Aprender toma tiempo
+5. **Experimenta** - Prueba diferentes imágenes
 
-## Troubleshooting
+## Solución de Problemas
 
-### Upload Issues
+### Problemas de Subida
 
-**Problem**: "File size too large"
-- **Solution**: Resize image to under 5MB
+**Problema**: "Tamaño de archivo demasiado grande"
+- **Solución**: Redimensiona la imagen a menos de 5MB
 
-**Problem**: "Invalid file type"
-- **Solution**: Use JPG, PNG, or GIF format
+**Problema**: "Tipo de archivo inválido"
+- **Solución**: Usa formato JPG, PNG o GIF
 
-### Tutorial Generation
+### Generación de Tutorial
 
-**Problem**: "Processing failed"
-- **Solution**: Try a different image or check image quality
+**Problema**: "Falló el procesamiento"
+- **Solución**: Prueba una imagen diferente o verifica la calidad de la imagen
 
-**Problem**: "Not enough steps generated"
-- **Solution**: Image may be too simple; try a more complex image
+**Problema**: "No se generaron suficientes pasos"
+- **Solución**: La imagen puede ser demasiado simple; prueba una imagen más compleja
 
-### Viewing Issues
+### Problemas de Visualización
 
-**Problem**: Steps not loading
-- **Solution**: Refresh page or check internet connection
+**Problema**: Pasos no cargando
+- **Solución**: Refresca la página o verifica la conexión a internet
 
-**Problem**: Images not displaying
-- **Solution**: Clear browser cache
+**Problema**: Imágenes no mostrándose
+- **Solución**: Borra la caché del navegador
 
-## Privacy & Security
+## Privacidad y Seguridad
 
-- Your tutorials are **private by default**
-- Only you can see private tutorials
-- Public tutorials are visible to everyone
-- You can delete your tutorials anytime
-- Your password is securely hashed
+- Tus tutoriales son **privados por defecto**
+- Solo tú puedes ver tutoriales privados
+- Los tutoriales públicos son visibles para todos
+- Puedes eliminar tus tutoriales en cualquier momento
+- Tu contraseña está asegurada con hash
 
-## Support
+## Soporte
 
-Need help? Contact us:
-- Email: support@creativia.com
-- GitHub Issues: [github.com/creativia/issues](https://github.com)
+¿Necesitas ayuda? Contáctanos:
+- Correo: support@creativia.com
+- Problemas en GitHub: [github.com/creativia/issues](https://github.com)
 
-## Keyboard Shortcuts
+## Atajos de Teclado
 
-| Key | Action |
-|-----|--------|
-| ← | Previous step |
-| → | Next step |
-| Esc | Close viewer |
+| Tecla | Acción |
+|-------|--------|
+| ← | Paso anterior |
+| → | Paso siguiente |
+| Esc | Cerrar visor |
 
-## Best Practices
+## Mejores Prácticas
 
-1. **Organize your tutorials** - Use descriptive titles
-2. **Share knowledge** - Make good tutorials public
-3. **Practice regularly** - Upload new images often
-4. **Learn progressively** - Start easy, increase difficulty
-5. **Give feedback** - Help us improve
+1. **Organiza tus tutoriales** - Usa títulos descriptivos
+2. **Comparte conocimiento** - Haz públicos los buenos tutoriales
+3. **Practica regularmente** - Sube nuevas imágenes a menudo
+4. **Aprende progresivamente** - Empieza fácil, aumenta la dificultad
+5. **Da retroalimentación** - Ayúdanos a mejorar
 
 ---
 
-Happy drawing! 🎨
+¡Feliz dibujo! 🎨

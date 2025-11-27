@@ -1,61 +1,61 @@
-# API Documentation - CreativIA
+# Documentación de API - CreativIA
 
-## Base URL
+## URL Base
 
 ```
-Development: http://localhost:8000/api
-Production: https://your-domain.com/api
+Desarrollo: http://localhost:8000/api
+Producción: https://tu-dominio.com/api
 ```
 
-## Authentication
+## Autenticación
 
-Most endpoints require authentication via session cookies. Login first to obtain a session.
+La mayoría de los endpoints requieren autenticación mediante cookies de sesión. Inicia sesión primero para obtener una sesión.
 
 ## Endpoints
 
-### Authentication
+### Autenticación
 
-#### Register User
+#### Registrar Usuario
 
 ```http
 POST /api/auth/register
 ```
 
-**Request Body:**
+**Cuerpo de la Solicitud:**
 ```json
 {
-  "username": "string (3-50 chars)",
-  "email": "string (valid email)",
-  "password": "string (min 6 chars)"
+  "username": "string (3-50 caracteres)",
+  "email": "string (email válido)",
+  "password": "string (mínimo 6 caracteres)"
 }
 ```
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
-  "message": "Registration successful",
+  "message": "Registro exitoso",
   "user_id": 123
 }
 ```
 
-**Response (400):**
+**Respuesta (400):**
 ```json
 {
   "success": false,
-  "message": "Email already exists"
+  "message": "El correo electrónico ya existe"
 }
 ```
 
 ---
 
-#### Login
+#### Iniciar Sesión
 
 ```http
 POST /api/auth/login
 ```
 
-**Request Body:**
+**Cuerpo de la Solicitud:**
 ```json
 {
   "email": "string",
@@ -63,11 +63,11 @@ POST /api/auth/login
 }
 ```
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
-  "message": "Login successful",
+  "message": "Inicio de sesión exitoso",
   "user": {
     "id": 123,
     "username": "johndoe",
@@ -78,36 +78,36 @@ POST /api/auth/login
 
 ---
 
-#### Logout
+#### Cerrar Sesión
 
 ```http
 POST /api/auth/logout
 ```
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
-  "message": "Logout successful"
+  "message": "Cierre de sesión exitoso"
 }
 ```
 
 ---
 
-### Images
+### Imágenes
 
-#### Upload Image
+#### Subir Imagen
 
 ```http
 POST /api/images/upload
 ```
 
-**Authentication:** Required
+**Autenticación:** Requerida
 
-**Request:** `multipart/form-data`
-- `image`: File (JPG, PNG, GIF, max 5MB)
+**Solicitud:** `multipart/form-data`
+- `image`: Archivo (JPG, PNG, GIF, máx 5MB)
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
@@ -117,37 +117,37 @@ POST /api/images/upload
 }
 ```
 
-**Response (400):**
+**Respuesta (400):**
 ```json
 {
   "success": false,
-  "errors": ["File size exceeds maximum of 5MB"]
+  "errors": ["El tamaño del archivo excede el máximo de 5MB"]
 }
 ```
 
 ---
 
-### Tutorials
+### Tutoriales
 
-#### Generate Tutorial
+#### Generar Tutorial
 
 ```http
 POST /api/tutorials/generate
 ```
 
-**Authentication:** Required
+**Autenticación:** Requerida
 
-**Request Body:**
+**Cuerpo de la Solicitud:**
 ```json
 {
   "image_id": 456,
-  "title": "My Drawing Tutorial",
-  "description": "Learning to draw a landscape",
+  "title": "Mi Tutorial de Dibujo",
+  "description": "Aprendiendo a dibujar un paisaje",
   "is_public": false
 }
 ```
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
@@ -158,33 +158,33 @@ POST /api/tutorials/generate
 
 ---
 
-#### Get Tutorial
+#### Obtener Tutorial
 
 ```http
 GET /api/tutorials/{id}
 ```
 
-**Authentication:** Required (unless public)
+**Autenticación:** Requerida (a menos que sea público)
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
   "data": {
     "id": 789,
-    "title": "My Drawing Tutorial",
-    "description": "Learning to draw a landscape",
+    "title": "Mi Tutorial de Dibujo",
+    "description": "Aprendiendo a dibujar un paisaje",
     "total_steps": 5,
-    "difficulty_level": "intermediate",
+    "difficulty_level": "intermedio",
     "is_public": false,
     "steps": [
       {
         "id": 1,
         "step_number": 1,
-        "title": "Step 1: Basic Outline",
-        "description": "Start with main shapes",
+        "title": "Paso 1: Esquema Básico",
+        "description": "Comienza con las formas principales",
         "image_path": "/storage/tutorials/123/step_1.png",
-        "instructions": "Draw the largest shapes first"
+        "instructions": "Dibuja primero las formas más grandes"
       }
     ]
   }
@@ -193,27 +193,27 @@ GET /api/tutorials/{id}
 
 ---
 
-#### Get User Tutorials
+#### Obtener Tutoriales de Usuario
 
 ```http
 GET /api/tutorials/user/{userId}
 ```
 
-**Authentication:** Required
+**Autenticación:** Requerida
 
-**Query Parameters:**
-- `limit` (optional): Number of results (default: 10)
+**Parámetros de Consulta:**
+- `limit` (opcional): Número de resultados (por defecto: 10)
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
   "data": [
     {
       "id": 789,
-      "title": "My Drawing Tutorial",
+      "title": "Mi Tutorial de Dibujo",
       "total_steps": 5,
-      "difficulty_level": "intermediate",
+      "difficulty_level": "intermedio",
       "created_at": "2024-01-15 10:30:00"
     }
   ]
@@ -222,15 +222,15 @@ GET /api/tutorials/user/{userId}
 
 ---
 
-#### Update Progress
+#### Actualizar Progreso
 
 ```http
 PUT /api/tutorials/{id}/progress
 ```
 
-**Authentication:** Required
+**Autenticación:** Requerida
 
-**Request Body:**
+**Cuerpo de la Solicitud:**
 ```json
 {
   "current_step": 3,
@@ -238,50 +238,50 @@ PUT /api/tutorials/{id}/progress
 }
 ```
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
-  "message": "Progress updated"
+  "message": "Progreso actualizado"
 }
 ```
 
 ---
 
-#### Share Tutorial
+#### Compartir Tutorial
 
 ```http
 POST /api/tutorials/{id}/share
 ```
 
-**Authentication:** Required
+**Autenticación:** Requerida
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
-  "message": "Tutorial is now public",
+  "message": "El tutorial es ahora público",
   "share_url": "http://localhost:8000/tutorial/789"
 }
 ```
 
 ---
 
-## Python AI Service API
+## API del Servicio de IA en Python
 
-### Base URL
+### URL Base
 
 ```
 http://localhost:5000
 ```
 
-### Health Check
+### Verificación de Salud
 
 ```http
 GET /health
 ```
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "status": "healthy",
@@ -291,77 +291,77 @@ GET /health
 
 ---
 
-### Process Image
+### Procesar Imagen
 
 ```http
 POST /process
 ```
 
-**Request:** `multipart/form-data`
-- `image`: File
+**Solicitud:** `multipart/form-data`
+- `image`: Archivo
 
-**Response (200):**
+**Respuesta (200):**
 ```json
 {
   "success": true,
   "steps": [
     {
-      "title": "Step 1: Basic Outline",
-      "description": "Start with main shapes",
-      "instructions": "Draw the largest shapes first",
+      "title": "Paso 1: Esquema Básico",
+      "description": "Comienza con las formas principales",
+      "instructions": "Dibuja primero las formas más grandes",
       "image_base64": "iVBORw0KGgoAAAANSUhEUgAA..."
     }
   ],
   "metadata": {
     "total_steps": 5,
-    "difficulty": "intermediate",
-    "estimated_time": "25 minutes"
+    "difficulty": "intermedio",
+    "estimated_time": "25 minutos"
   }
 }
 ```
 
 ---
 
-## Error Codes
+## Códigos de Error
 
-| Code | Description |
-|------|-------------|
-| 200  | Success |
-| 400  | Bad Request - Invalid input |
-| 401  | Unauthorized - Authentication required |
-| 403  | Forbidden - Insufficient permissions |
-| 404  | Not Found - Resource doesn't exist |
-| 500  | Internal Server Error |
+| Código | Descripción |
+|--------|-------------|
+| 200  | Éxito |
+| 400  | Solicitud Incorrecta - Entrada inválida |
+| 401  | No Autorizado - Autenticación requerida |
+| 403  | Prohibido - Permisos insuficientes |
+| 404  | No Encontrado - El recurso no existe |
+| 500  | Error Interno del Servidor |
 
-## Rate Limiting
+## Límite de Velocidad (Rate Limiting)
 
-Currently no rate limiting implemented. In production, consider:
-- 100 requests per minute per IP
-- 1000 requests per hour per user
+Actualmente no hay límite de velocidad implementado. En producción, considera:
+- 100 solicitudes por minuto por IP
+- 1000 solicitudes por hora por usuario
 
-## Examples
+## Ejemplos
 
-### cURL Examples
+### Ejemplos cURL
 
-**Register:**
+**Registrar:**
 ```bash
 curl -X POST http://localhost:8000/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"username":"johndoe","email":"john@example.com","password":"secret123"}'
 ```
 
-**Upload Image:**
+**Subir Imagen:**
 ```bash
 curl -X POST http://localhost:8000/api/images/upload \
   -F "image=@/path/to/image.jpg" \
   -b cookies.txt
 ```
 
-### JavaScript Examples
+### Ejemplos JavaScript
 
-**Using Fetch API:**
+**Usando Fetch API:**
 ```javascript
-// Login
+// Iniciar Sesión
 const response = await fetch('/api/auth/login', {
   method: 'POST',
   headers: {
@@ -377,7 +377,7 @@ const data = await response.json();
 console.log(data);
 ```
 
-**Upload Image:**
+**Subir Imagen:**
 ```javascript
 const formData = new FormData();
 formData.append('image', fileInput.files[0]);

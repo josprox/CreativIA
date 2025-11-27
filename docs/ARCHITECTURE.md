@@ -1,53 +1,53 @@
-# Architecture Documentation - CreativIA
+# Documentación de Arquitectura - CreativIA
 
-## System Overview
+## Visión General del Sistema
 
-CreativIA is built using a **3-tier architecture** with clear separation between presentation, business logic, and data access layers.
+CreativIA está construido usando una **arquitectura de 3 capas** con una clara separación entre presentación, lógica de negocio y capas de acceso a datos.
 
-## Architecture Diagram
+## Diagrama de Arquitectura
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│                    User Browser                         │
+│                    Navegador del Usuario                │
 └────────────────────┬────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────┐
-│              Frontend Layer (JavaScript)                │
-│  - ImageUploader Component                              │
-│  - TutorialViewer Component                             │
-│  - StepNavigator Component                              │
-│  - API Service (Fetch/AJAX)                             │
+│              Capa Frontend (JavaScript)                 │
+│  - Componente ImageUploader                             │
+│  - Componente TutorialViewer                            │
+│  - Componente StepNavigator                             │
+│  - Servicio API (Fetch/AJAX)                            │
 └────────────────────┬────────────────────────────────────┘
                      │
                      ▼
 ┌─────────────────────────────────────────────────────────┐
-│           Backend Layer (PHP MVC)                       │
+│           Capa Backend (PHP MVC)                        │
 │  ┌─────────────────────────────────────────────┐        │
-│  │          Controllers                        │        │
+│  │          Controladores                      │        │
 │  │  - AuthController                           │        │
 │  │  - TutorialController                       │        │
 │  │  - UserController                           │        │
 │  └──────────────┬──────────────────────────────┘        │
 │                 │                                        │
 │  ┌──────────────▼──────────────────────────────┐        │
-│  │          Services (Business Logic)          │        │
+│  │          Servicios (Lógica de Negocio)      │        │
 │  │  - AuthService                              │        │
 │  │  - ImageProcessingService ◄─────────┐       │        │
 │  │  - TutorialService                  │       │        │
 │  └──────────────┬──────────────────────┼───────┘        │
 │                 │                      │                │
 │  ┌──────────────▼──────────────────┐   │                │
-│  │      Repositories               │   │                │
+│  │      Repositorios               │   │                │
 │  │  - UserRepository               │   │                │
 │  │  - TutorialRepository           │   │                │
 │  │  - ImageRepository              │   │                │
 │  └──────────────┬──────────────────┘   │                │
-└─────────────────┼────────────────────────────────────────┘
+46: └─────────────────┼────────────────────────────────────────┘
                   │                      │
                   ▼                      │
 ┌─────────────────────────────────┐      │
-│      Database (MySQL)           │      │
+│      Base de Datos (MySQL)      │      │
 │  - users                        │      │
 │  - images                       │      │
 │  - tutorials                    │      │
@@ -57,9 +57,9 @@ CreativIA is built using a **3-tier architecture** with clear separation between
                                          │
                                          ▼
                         ┌────────────────────────────────┐
-                        │  Python AI Service (Flask)     │
+                        │  Servicio IA Python (Flask)    │
                         │  ┌──────────────────────────┐  │
-                        │  │  Processing Pipeline     │  │
+                        │  │  Pipeline de Procesamiento│  │
                         │  │  1. EdgeDetector         │  │
                         │  │  2. ContourExtractor     │  │
                         │  │  3. ShapeSimplifier      │  │
@@ -69,19 +69,19 @@ CreativIA is built using a **3-tier architecture** with clear separation between
                         └────────────────────────────────┘
 ```
 
-## Design Patterns
+## Patrones de Diseño
 
-### 1. MVC (Model-View-Controller)
+### 1. MVC (Modelo-Vista-Controlador)
 
-**Purpose**: Separate concerns between data, presentation, and control logic.
+**Propósito**: Separar preocupaciones entre datos, presentación y lógica de control.
 
-- **Models**: Represent domain entities (User, Image, Tutorial, Step)
-- **Views**: HTML templates for rendering
-- **Controllers**: Handle HTTP requests and coordinate between models and views
+- **Modelos**: Representan entidades del dominio (User, Image, Tutorial, Step)
+- **Vistas**: Plantillas HTML para renderizado
+- **Controladores**: Manejan solicitudes HTTP y coordinan entre modelos y vistas
 
-### 2. Repository Pattern
+### 2. Patrón Repositorio
 
-**Purpose**: Abstract data access logic from business logic.
+**Propósito**: Abstraer la lógica de acceso a datos de la lógica de negocio.
 
 ```php
 UserRepository
@@ -91,9 +91,9 @@ UserRepository
   └── update($id, $data)
 ```
 
-### 3. Service Layer
+### 3. Capa de Servicio
 
-**Purpose**: Encapsulate business logic separate from controllers.
+**Propósito**: Encapsular la lógica de negocio separada de los controladores.
 
 ```php
 TutorialService
@@ -102,9 +102,9 @@ TutorialService
   └── shareTutorial()
 ```
 
-### 4. Dependency Injection
+### 4. Inyección de Dependencias
 
-**Purpose**: Achieve loose coupling and testability.
+**Propósito**: Lograr bajo acoplamiento y testabilidad.
 
 ```php
 class TutorialService {
@@ -118,169 +118,169 @@ class TutorialService {
 }
 ```
 
-## SOLID Principles Application
+## Aplicación de Principios SOLID
 
-### Single Responsibility Principle (SRP)
+### Principio de Responsabilidad Única (SRP)
 
-Each class has one reason to change:
-- `EdgeDetector` - Only edge detection
-- `AuthService` - Only authentication
-- `TutorialController` - Only tutorial HTTP handling
+Cada clase tiene una razón para cambiar:
+- `EdgeDetector` - Solo detección de bordes
+- `AuthService` - Solo autenticación
+- `TutorialController` - Solo manejo HTTP de tutoriales
 
-### Open/Closed Principle (OCP)
+### Principio Abierto/Cerrado (OCP)
 
-System is open for extension, closed for modification:
-- Middleware can be added to Router without modifying Router class
-- New services can be added without changing existing code
+El sistema está abierto para extensión, cerrado para modificación:
+- Middleware puede ser añadido al Router sin modificar la clase Router
+- Nuevos servicios pueden ser añadidos sin cambiar código existente
 
-### Liskov Substitution Principle (LSP)
+### Principio de Sustitución de Liskov (LSP)
 
-All models extend base `Model` class and can be used interchangeably where base model is expected.
+Todos los modelos extienden la clase base `Model` y pueden ser usados intercambiablemente donde se espera el modelo base.
 
-### Interface Segregation Principle (ISP)
+### Principio de Segregación de Interfaz (ISP)
 
-Classes don't depend on methods they don't use. Each service has focused interface.
+Las clases no dependen de métodos que no usan. Cada servicio tiene una interfaz enfocada.
 
-### Dependency Inversion Principle (DIP)
+### Principio de Inversión de Dependencias (DIP)
 
-High-level modules don't depend on low-level modules:
-- Controllers depend on Services (abstraction)
-- Services depend on Repositories (abstraction)
+Los módulos de alto nivel no dependen de módulos de bajo nivel:
+- Controladores dependen de Servicios (abstracción)
+- Servicios dependen de Repositorios (abstracción)
 
-## Data Flow
+## Flujo de Datos
 
-### Tutorial Generation Flow
-
-```
-1. User uploads image via frontend
-   ↓
-2. ImageUploader sends to PHP backend
-   ↓
-3. ImageProcessingService validates and stores
-   ↓
-4. ImageProcessingService calls Python AI API
-   ↓
-5. Python processes image through pipeline:
-   - Edge detection
-   - Contour extraction
-   - Shape simplification
-   - Step generation
-   ↓
-6. Python returns step data to PHP
-   ↓
-7. TutorialService saves tutorial and steps to database
-   ↓
-8. User redirected to tutorial viewer
-   ↓
-9. TutorialViewer loads and displays steps
-```
-
-## Security Architecture
-
-### Authentication Flow
+### Flujo de Generación de Tutorial
 
 ```
-1. User submits credentials
+1. Usuario sube imagen vía frontend
    ↓
-2. AuthController validates input
+2. ImageUploader envía a backend PHP
    ↓
-3. AuthService verifies credentials
+3. ImageProcessingService valida y almacena
    ↓
-4. Password verified with bcrypt
+4. ImageProcessingService llama a API de IA en Python
    ↓
-5. Session created with user ID
+5. Python procesa imagen a través del pipeline:
+   - Detección de bordes
+   - Extracción de contornos
+   - Simplificación de formas
+   - Generación de pasos
    ↓
-6. User redirected to dashboard
+6. Python retorna datos de pasos a PHP
+   ↓
+7. TutorialService guarda tutorial y pasos en base de datos
+   ↓
+8. Usuario redirigido al visor de tutorial
+   ↓
+9. TutorialViewer carga y muestra pasos
 ```
 
-### Authorization
+## Arquitectura de Seguridad
 
-- Session-based authentication
-- User ownership checks in services
-- Public/private tutorial access control
+### Flujo de Autenticación
 
-### Input Validation
+```
+1. Usuario envía credenciales
+   ↓
+2. AuthController valida entrada
+   ↓
+3. AuthService verifica credenciales
+   ↓
+4. Contraseña verificada con bcrypt
+   ↓
+5. Sesión creada con ID de usuario
+   ↓
+6. Usuario redirigido al panel de control
+```
 
-- Client-side validation (JavaScript)
-- Server-side validation (PHP)
-- File type and size validation
-- SQL injection prevention (prepared statements)
+### Autorización
 
-## Scalability Considerations
+- Autenticación basada en sesiones
+- Verificaciones de propiedad de usuario en servicios
+- Control de acceso a tutoriales públicos/privados
 
-### Horizontal Scaling
+### Validación de Entrada
 
-- **PHP Backend**: Stateless design allows multiple instances behind load balancer
-- **Python AI Service**: Can run multiple instances for parallel processing
-- **Database**: Can implement read replicas for query scaling
+- Validación del lado del cliente (JavaScript)
+- Validación del lado del servidor (PHP)
+- Validación de tipo y tamaño de archivo
+- Prevención de inyección SQL (sentencias preparadas)
 
-### Caching Strategy
+## Consideraciones de Escalabilidad
 
-- Session data in Redis (future enhancement)
-- Tutorial metadata caching
-- Static asset CDN
+### Escalado Horizontal
 
-### Asynchronous Processing
+- **Backend PHP**: Diseño sin estado permite múltiples instancias detrás de balanceador de carga
+- **Servicio IA Python**: Puede correr múltiples instancias para procesamiento paralelo
+- **Base de Datos**: Puede implementar réplicas de lectura para escalado de consultas
 
-- Image processing can be moved to queue (RabbitMQ/Redis)
-- Background job processing for long-running tasks
+### Estrategia de Caché
 
-## Technology Decisions
+- Datos de sesión en Redis (mejora futura)
+- Caché de metadatos de tutoriales
+- CDN para activos estáticos
 
-### Why Custom PHP MVC?
+### Procesamiento Asíncrono
+
+- Procesamiento de imágenes puede moverse a cola (RabbitMQ/Redis)
+- Procesamiento de trabajos en segundo plano para tareas largas
+
+## Decisiones Tecnológicas
+
+### ¿Por qué MVC Personalizado en PHP?
 
 ✅ **Pros**:
-- Full control over architecture
-- No framework overhead
-- Educational value
-- Easy to understand and modify
+- Control total sobre la arquitectura
+- Sin sobrecarga de framework
+- Valor educativo
+- Fácil de entender y modificar
 
-❌ **Cons**:
-- Missing some framework features
-- More manual work
+❌ **Contras**:
+- Faltan algunas características de framework
+- Más trabajo manual
 
-### Why Separate Python Service?
-
-✅ **Pros**:
-- Python excels at AI/ML
-- Independent scaling
-- Technology specialization
-- Microservice architecture
-
-### Why Vanilla JavaScript?
+### ¿Por qué Servicio Python Separado?
 
 ✅ **Pros**:
-- No build step required
-- Smaller bundle size
-- Better performance
-- Easier to understand
+- Python sobresale en IA/ML
+- Escalado independiente
+- Especialización tecnológica
+- Arquitectura de microservicios
 
-## Future Enhancements
+### ¿Por qué JavaScript Vanilla?
 
-1. **API Authentication**: JWT tokens for API access
-2. **Real-time Processing**: WebSocket for progress updates
-3. **Advanced AI**: Deep learning models for better step generation
-4. **Caching Layer**: Redis for performance
-5. **Queue System**: Async job processing
-6. **Testing**: Unit and integration tests
-7. **CI/CD**: Automated deployment pipeline
+✅ **Pros**:
+- No requiere paso de compilación
+- Tamaño de paquete más pequeño
+- Mejor rendimiento
+- Más fácil de entender
 
-## Maintenance
+## Mejoras Futuras
 
-### Code Organization
+1. **Autenticación API**: Tokens JWT para acceso API
+2. **Procesamiento en Tiempo Real**: WebSocket para actualizaciones de progreso
+3. **IA Avanzada**: Modelos de aprendizaje profundo para mejor generación de pasos
+4. **Capa de Caché**: Redis para rendimiento
+5. **Sistema de Colas**: Procesamiento de trabajos asíncrono
+6. **Pruebas**: Pruebas unitarias y de integración
+7. **CI/CD**: Pipeline de despliegue automatizado
 
-- Follow PSR-12 coding standards for PHP
-- PEP 8 for Python
-- ESLint for JavaScript
+## Mantenimiento
 
-### Version Control
+### Organización de Código
 
-- Feature branch workflow
-- Pull request reviews
-- Semantic versioning
+- Seguir estándares de codificación PSR-12 para PHP
+- PEP 8 para Python
+- ESLint para JavaScript
 
-### Monitoring
+### Control de Versiones
 
-- Error logging
-- Performance metrics
-- User analytics
+- Flujo de trabajo con ramas de características
+- Revisiones de pull requests
+- Versionado semántico
+
+### Monitoreo
+
+- Registro de errores
+- Métricas de rendimiento
+- Analíticas de usuario

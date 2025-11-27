@@ -1,25 +1,25 @@
-# Installation Guide - CreativIA
+# Guía de Instalación - CreativIA
 
-## System Requirements
+## Requisitos del Sistema
 
-- **PHP**: 8.0 or higher
-- **Python**: 3.9 or higher
-- **MySQL**: 8.0 or higher
-- **Web Server**: Apache 2.4+ or Nginx 1.18+
-- **RAM**: Minimum 2GB
-- **Disk Space**: 500MB
+- **PHP**: 8.0 o superior
+- **Python**: 3.9 o superior
+- **MySQL**: 8.0 o superior
+- **Servidor Web**: Apache 2.4+ o Nginx 1.18+
+- **RAM**: Mínimo 2GB
+- **Espacio en Disco**: 500MB
 
-## Step-by-Step Installation
+## Instalación Paso a Paso
 
-### 1. Environment Setup
+### 1. Configuración del Entorno
 
 #### Windows
 ```bash
-# Install XAMPP or WAMP for PHP and MySQL
-# Download from: https://www.apachefriends.org/
+# Instalar XAMPP o WAMP para PHP y MySQL
+# Descargar desde: https://www.apachefriends.org/
 
-# Install Python
-# Download from: https://www.python.org/downloads/
+# Instalar Python
+# Descargar desde: https://www.python.org/downloads/
 ```
 
 #### Linux (Ubuntu/Debian)
@@ -30,97 +30,97 @@ sudo apt install mysql-server
 sudo apt install python3.9 python3-pip
 ```
 
-### 2. Database Configuration
+### 2. Configuración de Base de Datos
 
 ```bash
-# Start MySQL
+# Iniciar MySQL
 mysql -u root -p
 
-# Create database (or use schema.sql)
+# Crear base de datos (o usar schema.sql)
 CREATE DATABASE creativia CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
-# Import schema
+# Importar esquema
 mysql -u root -p creativia < database/schema.sql
 ```
 
-### 3. Application Configuration
+### 3. Configuración de la Aplicación
 
 ```bash
-# Copy environment file
+# Copiar archivo de entorno
 cp .env.example .env
 
-# Edit .env file
+# Editar archivo .env
 nano .env
 ```
 
-Update the following values:
+Actualiza los siguientes valores:
 ```
 DB_HOST=localhost
 DB_NAME=creativia
 DB_USER=root
-DB_PASSWORD=your_password
+DB_PASSWORD=tu_contraseña
 
 PYTHON_API_URL=http://localhost:5000
 ```
 
-### 4. Python AI Service Setup
+### 4. Configuración del Servicio de IA en Python
 
 ```bash
-# Navigate to Python module
+# Navegar al módulo de Python
 cd python_modules
 
-# Create virtual environment (recommended)
-python -m venv venv
+# Crear entorno virtual (recomendado)
+python3 -m venv venv
 
-# Activate virtual environment
+# Activar entorno virtual
 # Windows:
 venv\Scripts\activate
 # Linux/Mac:
 source venv/bin/activate
 
-# Install dependencies
-pip install -r requirements.txt
+# Instalar dependencias
+pip3 install -r requirements.txt
 ```
 
-### 5. File Permissions
+### 5. Permisos de Archivos
 
 ```bash
-# Set proper permissions for upload directories
+# Establecer permisos adecuados para directorios de carga
 chmod 755 public/uploads
 chmod 755 storage/tutorials
 chmod 755 storage/temp
 ```
 
-### 6. Start Services
+### 6. Iniciar Servicios
 
-#### Terminal 1: Python AI Service
+#### Terminal 1: Servicio de IA en Python
 ```bash
 cd python_modules/api
-python app.py
+python3 app.py
 ```
 
-#### Terminal 2: PHP Development Server
+#### Terminal 2: Servidor de Desarrollo PHP
 ```bash
 cd public
 php -S localhost:8000
 ```
 
-For production, configure Apache or Nginx virtual host.
+Para producción, configura un host virtual de Apache o Nginx.
 
-### 7. Verify Installation
+### 7. Verificar Instalación
 
-Open browser and navigate to:
+Abre el navegador y navega a:
 ```
 http://localhost:8000
 ```
 
-You should see the CreativIA landing page.
+Deberías ver la página de inicio de CreativIA.
 
-## Production Deployment
+## Despliegue en Producción
 
-### Apache Configuration
+### Configuración de Apache
 
-Create virtual host file:
+Crear archivo de host virtual:
 ```apache
 <VirtualHost *:80>
     ServerName creativia.local
@@ -136,9 +136,9 @@ Create virtual host file:
 </VirtualHost>
 ```
 
-### Python Service as Systemd Service
+### Servicio Python como Servicio Systemd
 
-Create `/etc/systemd/system/creativia-ai.service`:
+Crear `/etc/systemd/system/creativia-ai.service`:
 ```ini
 [Unit]
 Description=CreativIA AI Processing Service
@@ -147,42 +147,42 @@ After=network.target
 [Service]
 User=www-data
 WorkingDirectory=/path/to/creativia/python_modules/api
-ExecStart=/path/to/venv/bin/python app.py
+ExecStart=/path/to/venv/bin/python3 app.py
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Enable and start:
+Habilitar e iniciar:
 ```bash
 sudo systemctl enable creativia-ai
 sudo systemctl start creativia-ai
 ```
 
-## Troubleshooting
+## Solución de Problemas
 
-### Database Connection Error
-- Verify MySQL is running
-- Check credentials in `.env`
-- Ensure database exists
+### Error de Conexión a Base de Datos
+- Verifica que MySQL esté corriendo
+- Revisa las credenciales en `.env`
+- Asegúrate de que la base de datos exista
 
-### Python Module Import Error
-- Activate virtual environment
-- Reinstall dependencies: `pip install -r requirements.txt`
+### Error de Importación de Módulo Python
+- Activa el entorno virtual
+- Reinstala dependencias: `pip3 install -r requirements.txt`
 
-### File Upload Error
-- Check directory permissions
-- Verify `MAX_UPLOAD_SIZE` in `.env`
-- Check PHP `upload_max_filesize` and `post_max_size`
+### Error de Subida de Archivos
+- Revisa permisos de directorios
+- Verifica `MAX_UPLOAD_SIZE` en `.env`
+- Revisa `upload_max_filesize` y `post_max_size` en PHP
 
-### Python API Not Responding
-- Check if service is running on port 5000
-- Verify firewall settings
-- Check `PYTHON_API_URL` in `.env`
+### API de Python No Responde
+- Verifica si el servicio está corriendo en el puerto 5000
+- Revisa configuraciones de firewall
+- Revisa `PYTHON_API_URL` en `.env`
 
-## Next Steps
+## Siguientes Pasos
 
-- Read [Architecture Documentation](ARCHITECTURE.md)
-- Review [API Documentation](API.md)
-- Check [User Guide](USER_GUIDE.md)
+- Leer [Documentación de Arquitectura](ARCHITECTURE.md)
+- Revisar [Documentación de API](API.md)
+- Revisar [Guía de Usuario](USER_GUIDE.md)
