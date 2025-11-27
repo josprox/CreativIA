@@ -88,7 +88,7 @@ class TutorialController extends Controller
     /**
      * View tutorial
      */
-    public function view($id)
+    public function show($id)
     {
         $tutorial = $this->tutorialService->getTutorial($id);
 

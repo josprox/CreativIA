@@ -11,6 +11,29 @@
         </div>
     </div>
 
+    <?php
+    // --- BLOQUE DE CORRECCIÓN DE RUTAS ---
+// Función auxiliar para limpiar la ruta
+    function cleanPath($path)
+    {
+        // Buscamos donde empieza la palabra "storage"
+        $pos = strpos($path, 'storage');
+        if ($pos !== false) {
+            // Cortamos todo lo que haya antes (el C:\Users...)
+            $clean = substr($path, $pos);
+            // Aseguramos que use barras normales (/) y agregamos la barra inicial
+            return '/' . str_replace('\\', '/', $clean);
+        }
+        return $path;
+    }
+
+    // 1. Limpiamos los pasos para el PHP (miniaturas)
+    foreach ($tutorial['steps'] as $key => $step) {
+        $tutorial['steps'][$key]['image_path'] = cleanPath($step['image_path']);
+    }
+    // -------------------------------------
+    ?>
+
     <div class="viewer-content">
         <div class="step-viewer" id="stepViewer">
             <div class="step-image-container">

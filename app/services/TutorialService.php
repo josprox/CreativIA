@@ -105,9 +105,16 @@ class TutorialService
     private function saveStepImages($stepsData, $userId)
     {
         $processedSteps = [];
-        $storageDir = BASE_PATH . '/' . $this->storagePath . '/' . $userId;
 
-        // Create user storage directory
+        // 1. Definimos la ruta relativa (para la URL pública)
+        // Ejemplo: storage/tutorials/1
+        $relativeDir = $this->storagePath . '/' . $userId;
+
+        // 2. Definimos la ruta absoluta física (donde PHP guardará el archivo)
+        // Agregamos '/public/' para apuntar a la carpeta correcta
+        $storageDir = BASE_PATH . '/public/' . $relativeDir;
+
+        // Create user storage directory if not exists
         if (!is_dir($storageDir)) {
             mkdir($storageDir, 0755, true);
         }
@@ -117,17 +124,25 @@ class TutorialService
             if (isset($step['image_base64'])) {
                 $imageData = base64_decode($step['image_base64']);
                 $filename = 'step_' . ($index + 1) . '_' . time() . '.png';
-                $filePath = $storageDir . '/' . $filename;
 
-                file_put_contents($filePath, $imageData);
+                // Ruta para GUARDAR el archivo (Disco duro)
+                $absoluteFilePath = $storageDir . '/' . $filename;
+
+                // Ruta para la BASE DE DATOS (URL Web)
+                // Le agregamos la barra inicial '/' para que sea absoluta desde la web
+                $webPath = '/' . $relativeDir . '/' . $filename;
+
+                file_put_contents($absoluteFilePath, $imageData);
             } else {
-                $filePath = $step['image_path'] ?? '';
+                // Si ya venía una ruta, intentamos limpiarla o usarla tal cual
+                $webPath = $step['image_path'] ?? '';
             }
 
             $processedSteps[] = [
                 'title' => $step['title'] ?? "Step " . ($index + 1),
                 'description' => $step['description'] ?? '',
-                'image_path' => $filePath,
+                // IMPORTANTE: Ahora guardamos la ruta web limpia, no la de C:\Users...
+                'image_path' => $webPath,
                 'instructions' => $step['instructions'] ?? ''
             ];
         }

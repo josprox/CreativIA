@@ -102,8 +102,17 @@ class Router
             $pattern = $this->convertToRegex($route['path']);
 
             if ($route['method'] === $requestMethod && preg_match($pattern, $requestUri, $matches)) {
-                // Extract parameters
-                array_shift($matches); // Remove full match
+
+                // --- INICIO DE LA CORRECCIÓN ---
+                // Creamos un array limpio SOLO con los argumentos nombrados.
+                // Ignoramos cualquier índice numérico para evitar conflictos en PHP 8.
+                $params = [];
+                foreach ($matches as $key => $value) {
+                    if (is_string($key)) {
+                        $params[$key] = $value;
+                    }
+                }
+                // --- FIN DE LA CORRECCIÓN ---
 
                 // Execute middleware
                 foreach ($this->middleware as $middleware) {
@@ -114,7 +123,7 @@ class Router
                 }
 
                 // Call controller method
-                $this->callHandler($route['handler'], $matches);
+                $this->callHandler($route['handler'], $params);
                 return;
             }
         }

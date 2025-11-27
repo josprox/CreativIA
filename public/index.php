@@ -44,7 +44,7 @@ $router->get('/logout', 'AuthController@logout');
 // Tutorial routes
 $router->get('/upload', 'TutorialController@showUpload');
 $router->post('/upload', 'TutorialController@upload');
-$router->get('/tutorial/{id}', 'TutorialController@view');
+$router->get('/tutorial/{id}', 'TutorialController@show');
 $router->get('/tutorials', 'TutorialController@list');
 
 // User routes
